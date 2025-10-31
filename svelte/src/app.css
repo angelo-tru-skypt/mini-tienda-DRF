@@ -1,0 +1,173 @@
+/* === Reset general === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0a0a0a;
+  color: #e4e4e4;
+  overflow: hidden;
+}
+
+/* === Fondo animado principal === */
+body::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 30%, #006d3b33, transparent 60%),
+              radial-gradient(circle at 80% 70%, #00ff8844, transparent 60%);
+  animation: pulse 8s infinite alternate ease-in-out;
+  z-index: -1;
+  transition: all 1s ease;
+}
+
+/* === Contenedor principal === */
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  backdrop-filter: blur(12px);
+  background: linear-gradient(135deg, rgba(0, 20, 10, 0.85), rgba(0, 0, 0, 0.95));
+  transition: background 1s ease;
+}
+
+/* === Tarjeta de login/register === */
+.form-card {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2.5rem;
+  border-radius: 2rem;
+  box-shadow: 0 15px 40px rgba(0, 128, 0, 0.2);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.form-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 128, 0, 0.3);
+}
+
+/* === Títulos === */
+.form-card h1, .form-card h2 {
+  text-align: center;
+  color: #006400;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+  font-size: 2rem;
+}
+
+/* === Inputs === */
+input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid #b2ffcc;
+  border-radius: 0.5rem;
+  background: #f0fff5;
+  color: #004d00;
+  font-size: 1rem;
+  transition: border 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #00cc66;
+  box-shadow: 0 0 10px #00cc6644;
+  transform: scale(1.03);
+}
+
+/* === Botones === */
+button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, #00cc66, #00ff88);
+  color: #000;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #00ff88, #00cc66);
+  box-shadow: 0 0 15px #00ff88aa;
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* === Mensajes de error y éxito === */
+.error {
+  color: #ff4444;
+  text-align: center;
+  margin-bottom: 1rem;
+  animation: shake 0.3s;
+}
+
+.success {
+  color: #008000;
+  text-align: center;
+  margin-bottom: 1rem;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* === Links para cambiar entre login/register === */
+.switch-link {
+  text-align: center;
+  margin-top: 1rem;
+  color: #004d00;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.switch-link a {
+  color: #00cc66;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.switch-link a:hover {
+  color: #00ff88;
+  text-decoration: underline;
+}
+
+/* === Animaciones === */
+@keyframes pulse {
+  0% { filter: hue-rotate(0deg) brightness(1); }
+  100% { filter: hue-rotate(30deg) brightness(1.2); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  .form-card {
+    padding: 1.8rem;
+    max-width: 95%;
+  }
+}
