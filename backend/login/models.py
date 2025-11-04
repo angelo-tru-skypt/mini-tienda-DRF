@@ -8,7 +8,6 @@ class Users(AbstractUser):
     created_at = models.DateField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        # Encripta la contraseña solo si aún no está encriptada
         if not self.password.startswith('pbkdf2_'):
             self.password = make_password(self.password)
         super().save(*args, **kwargs)
