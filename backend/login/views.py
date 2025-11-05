@@ -16,7 +16,6 @@ def register_user(request):
         return Response({'mensaje': 'Usuario creado correctamente'}, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 @api_view(['POST'])
 def login_user(request):
     email = request.data.get('email')
