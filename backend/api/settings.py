@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+from dotenv import load_dotenv
+import os
+load_dotenv()  # Cargar .env
 
 from pathlib import Path
 from pymysql import install_as_MySQLdb
@@ -94,11 +97,11 @@ AUTH_USER_MODEL = 'login.Users'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tienda_virtual',
-        'HOST': 'localhost',
-        'USER': 'root',
-        'PASSWORD': 'Amancebo0818'
+        'ENGINE': os.getenv('ENGINE'),
+        'NAME': os.getenv('DB_NAME'),
+        'HOST': os.getenv('DB_HOST'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD')
     }
 }
 

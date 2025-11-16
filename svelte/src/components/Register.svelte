@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
-  import { navigate } from '../components/stores/router'
+  import { navigate } from '../components/stores/router';
 
   let username = '';
   let email = '';
@@ -18,7 +18,6 @@
     success = '';
     error = '';
 
-    // Validación cliente
     if (!username || !email || !password) {
       error = 'Todos los campos son obligatorios';
       return;
@@ -42,28 +41,26 @@
       const data = await res.json();
 
       if (!res.ok) {
-        error = data.detail || 'Error en el registro';
+        error = data.error || 'Error en el registro';
         return;
       }
 
-      success = 'Registro exitoso ✅';
+      success = 'Registro exitoso';
       error = '';
 
-      // Redirige al login después de 2 segundos
       setTimeout(() => {
         dispatch('navigate', { page: 'login' });
-      }, 2000);
+      }, 1000);
 
     } catch (err) {
-      error = err.message || 'Error al conectar con el servidor';
+      error = 'Error al conectar con el servidor';
     }
   };
 
-const goToLogin = () => {
+  const goToLogin = () => {
     navigate('/login');
     dispatch('navigate', { page: 'login' });
   };
-
 </script>
 
 <div class="card-container">

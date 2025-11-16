@@ -1,0 +1,28 @@
+# Entorno virtual
+venv/
+env/
+ENV/
+.venv/
+
+# Archivo de variables de entorno
+.env
+
+# Archivos de compilación de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de migraciones (opcional)
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# Archivos de configuración del editor
+.vscode/
+.idea/
+
+# Archivos de logs
+*.log
+
+# Archivos estáticos generados automáticamente
+staticfiles
