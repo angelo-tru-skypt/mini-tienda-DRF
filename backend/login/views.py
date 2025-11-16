@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework_simplejwt.tokens import RefreshToken
 from .models import Users
 from .serializers import UsersSerializers
 
@@ -16,6 +17,7 @@ def register_user(request):
         return Response({'mensaje': 'Usuario creado correctamente'}, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['POST'])
 def login_user(request):
     email = request.data.get('email')
@@ -27,13 +29,18 @@ def login_user(request):
         return Response({'error': 'Usuario no encontrado'}, status=status.HTTP_404_NOT_FOUND)
 
     if usuario.verificar_password(password):
+        refresh = RefreshToken.for_user(usuario)
         return Response({
             'mensaje': 'Login exitoso',
             'usuario': {
                 'id': usuario.id,
                 'username': usuario.username,
                 'email': usuario.email
+            },
+            'tokens': {
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
             }
         }, status=status.HTTP_200_OK)
-    else:
-        return Response({'error': 'Contraseña incorrecta'}, status=status.HTTP_401_UNAUTHORIZED)
+
+    return Response({'error': 'Contraseña incorrecta'}, status=status.HTTP_401_UNAUTHORIZED)

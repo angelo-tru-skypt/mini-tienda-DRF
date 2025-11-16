@@ -7,6 +7,9 @@ class Users(AbstractUser):
     is_active = models.BooleanField(default=True)
     created_at = models.DateField(auto_now_add=True)
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
     def save(self, *args, **kwargs):
         if not self.password.startswith('pbkdf2_'):
             self.password = make_password(self.password)
