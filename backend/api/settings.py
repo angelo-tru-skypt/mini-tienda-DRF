@@ -11,14 +11,14 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 from dotenv import load_dotenv
 import os
-load_dotenv()  # Cargar .env
+load_dotenv() 
 
 from pathlib import Path
 from pymysql import install_as_MySQLdb
-
+ 
 install_as_MySQLdb()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
