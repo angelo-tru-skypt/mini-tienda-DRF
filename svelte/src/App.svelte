@@ -6,8 +6,7 @@
 
   import Login from './components/Login.svelte'
   import Store from './components/store.svelte';
-  import Register from './components/Register.svelte'; // opcional, si no existe usa Login o crea uno
-
+  import Register from './components/Register.svelte'; 
 
   onMount(() => {
     const current = get(route);
